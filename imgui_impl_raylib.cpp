@@ -249,7 +249,7 @@ bool ImGui_ImplRaylib_ProcessEvent()
     //{
 #ifdef ENABLE_SCODETOUTF8
     int length;     //  Length was only ever created to be passed to CodepointToUtf8(), since it doesn't check for nullptrs.
-    io.AddInputCharactersUTF8(CodepointToUtf8(GetCharPressed(), &length));
+    io.AddInputCharactersUTF8(CodepointToUTF8(GetCharPressed(), &length));
     (void)length;   //  Silencing the compiler warnings.
 #else
     io.AddInputCharacter(GetKeyPressed());
@@ -275,7 +275,7 @@ void ImGui_ImplRaylib_LoadDefaultFontAtlas()
         image.width = width;
         image.height = height;
         image.mipmaps = 1;
-        image.format = UNCOMPRESSED_R8G8B8A8;
+        image.format = PIXELFORMAT_UNCOMPRESSED_R8G8B8A8;
         Texture2D tex = LoadTextureFromImage(image);
 		g_AtlasTexID = tex.id;
 		io.Fonts->TexID = (void*)&g_AtlasTexID;
